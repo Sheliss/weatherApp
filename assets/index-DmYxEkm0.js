@@ -60,7 +60,7 @@ Error generating stack: `+i.message+`
 `,qh=Me.div`
   position: relative;
 `,bh=Me.div`
-  visibility: ${u=>u.visible===!1?"visible":"hidden"};
+  visibility: ${u=>u.visible};
   text-align: center;
 `,em=Me.h1`
   font-size: 50px;
@@ -122,7 +122,7 @@ Error generating stack: `+i.message+`
   &:first-child {
     padding-bottom: 2px;
   }
-`,ci=u=>re.jsxs(vm,{children:[re.jsx(pf,{children:u.text}),re.jsx(pf,{children:u.value})]}),wm=u=>re.jsx(re.Fragment,{children:re.jsxs(bh,{visible:u.visible,children:[re.jsx(em,{children:u.weather.city}),re.jsx(tm,{children:u.weather.description}),re.jsx(nm,{children:re.jsx(rm,{src:"https://openweathermap.org/img/wn/"+u.weather.icon+"@2x.png",alt:"weather icon"})}),re.jsxs(lm,{children:[u.weather.temp,"°"]}),re.jsxs(im,{children:[re.jsx(ci,{text:"Feels Like",value:u.weather.feelsLike+"°"}),re.jsx(ci,{text:"Humidity",value:u.weather.humidity+"%"}),re.jsx(ci,{text:"Wind",value:u.weather.windSpeed+" m/s"}),re.jsx(ci,{text:"Pressure",value:u.weather.pressure+" hPa"})]})]})}),Sm=Me.div`
+`,ci=u=>re.jsxs(vm,{children:[re.jsx(pf,{children:u.text}),re.jsx(pf,{children:u.value})]}),wm=u=>re.jsx(re.Fragment,{children:re.jsxs(bh,{visible:u.visible===!1?"visible":"hidden",children:[re.jsx(em,{children:u.weather.city}),re.jsx(tm,{children:u.weather.description}),re.jsx(nm,{children:re.jsx(rm,{src:"https://openweathermap.org/img/wn/"+u.weather.icon+"@2x.png",alt:"weather icon"})}),re.jsxs(lm,{children:[u.weather.temp,"°"]}),re.jsxs(im,{children:[re.jsx(ci,{text:"Feels Like",value:u.weather.feelsLike+"°"}),re.jsx(ci,{text:"Humidity",value:u.weather.humidity+"%"}),re.jsx(ci,{text:"Wind",value:u.weather.windSpeed+" m/s"}),re.jsx(ci,{text:"Pressure",value:u.weather.pressure+" hPa"})]})]})}),Sm=Me.div`
   position: absolute;
   text-align: center;
   visibility: visible;
