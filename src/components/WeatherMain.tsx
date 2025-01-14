@@ -41,11 +41,11 @@ const WeatherMain = (props: Props) => {
         ></WeatherInfoCard>
         <WeatherInfoCard
           text="Wind"
-          value={props.weather.feelsLike + ` m/s`}
+          value={props.weather.windSpeed + ` m/s`}
         ></WeatherInfoCard>
         <WeatherInfoCard
           text="Pressure"
-          value={props.weather.feelsLike + ` hPa`}
+          value={props.weather.pressure + ` hPa`}
         ></WeatherInfoCard>
       </CardsContainer>
     </WeatherMainContainer>

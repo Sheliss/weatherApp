@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const WeatherContainer = styled.div`
   width: 100%;
@@ -46,4 +46,32 @@ export const CardsContainer = styled.div`
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
+`;
+
+export const SpinnerContainer = styled.div`
+  text-align: center;
+  padding: 50px 0;
+`;
+
+const spinAnimation = keyframes`
+  0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+`;
+
+export const Spinner = styled.div`
+  width: 60px;
+  height: 60px;
+  border: 5px solid ${({ theme }) => theme.colors.lightGray};
+  border-bottom-color: ${({ theme }) => theme.colors.orange};
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation-name: ${spinAnimation};
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 `;

@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { CurrentWeather } from "../types";
 import Search from "./Search";
-import { WeatherInnerStyled } from "./styles/Weather.styled";
+import {
+  Spinner,
+  SpinnerContainer,
+  WeatherInnerStyled,
+} from "./styles/Weather.styled";
 import WeatherMain from "./WeatherMain";
 
 const WeatherInner = () => {
@@ -16,11 +20,15 @@ const WeatherInner = () => {
     windSpeed: 0,
     pressure: 0,
   });
+  const [isWeather, setIsWeather] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getWeather = async (city: string) => {
     if (city === "") {
       return;
     }
+
+    setIsLoading(true);
 
     const uri =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -41,10 +49,12 @@ const WeatherInner = () => {
         feelsLike: Math.round(data.main.feels_like),
         humidity: Math.round(data.main.humidity),
         windSpeed: Math.round(data.wind.speed),
-        pressure: Math.round(data.main.pressure),
+        pressure: data.main.pressure,
       });
-      console.log(currentWeather.icon);
+      setIsLoading(false);
+      setIsWeather(true);
     } catch (err) {
+      setIsLoading(false);
       console.error(err);
     }
   };
@@ -52,7 +62,14 @@ const WeatherInner = () => {
   return (
     <WeatherInnerStyled>
       <Search getWeather={getWeather}></Search>
-      <WeatherMain weather={currentWeather}></WeatherMain>
+      {isWeather ? <WeatherMain weather={currentWeather}></WeatherMain> : ""}
+      {isLoading ? (
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
+      ) : (
+        ""
+      )}
     </WeatherInnerStyled>
   );
 };
