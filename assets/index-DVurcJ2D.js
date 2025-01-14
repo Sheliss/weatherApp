@@ -87,6 +87,7 @@ Error generating stack: `+i.message+`
   animation: ${dn} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `,lm=Me.div`
   width: 100px;
+  height: 100px;
   margin: 0 auto;
   -webkit-animation: ${dn} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     both;
