@@ -2,11 +2,11 @@ import { useState } from "react";
 import { CurrentWeather } from "../types";
 import Search from "./Search";
 import {
-  Spinner,
-  SpinnerContainer,
+  WeatherInfoContainer,
   WeatherInnerStyled,
 } from "./styles/Weather.styled";
 import WeatherMain from "./WeatherMain";
+import Spinner from "./Spinner";
 
 const WeatherInner = () => {
   const api: string = "a24d1a2d1f579fd23347851d7b97f47a";
@@ -29,6 +29,7 @@ const WeatherInner = () => {
     }
 
     setIsLoading(true);
+    setIsWeather(true);
 
     const uri =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -52,7 +53,6 @@ const WeatherInner = () => {
         pressure: data.main.pressure,
       });
       setIsLoading(false);
-      setIsWeather(true);
     } catch (err) {
       setIsLoading(false);
       console.error(err);
@@ -62,14 +62,17 @@ const WeatherInner = () => {
   return (
     <WeatherInnerStyled>
       <Search getWeather={getWeather}></Search>
-      {isWeather ? <WeatherMain weather={currentWeather}></WeatherMain> : ""}
-      {isLoading ? (
-        <SpinnerContainer>
-          <Spinner />
-        </SpinnerContainer>
-      ) : (
-        ""
-      )}
+      <WeatherInfoContainer>
+        {isLoading ? <Spinner /> : ""}
+        {isWeather ? (
+          <WeatherMain
+            visible={isLoading}
+            weather={currentWeather}
+          ></WeatherMain>
+        ) : (
+          ""
+        )}
+      </WeatherInfoContainer>
     </WeatherInnerStyled>
   );
 };
