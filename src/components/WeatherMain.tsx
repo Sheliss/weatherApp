@@ -18,10 +18,14 @@ type Props = {
 const WeatherMain = (props: Props) => {
   return (
     <>
-      <WeatherMainContainer visible={props.visible}>
-        <CityName>{props.weather.city}</CityName>
-        <Description>{props.weather.description}</Description>
-        <ImageContainer>
+      <WeatherMainContainer
+        visible={props.visible === false ? "visible" : "hidden"}
+      >
+        <CityName key={props.weather.city}>{props.weather.city}</CityName>
+        <Description key={props.weather.description}>
+          {props.weather.description}
+        </Description>
+        <ImageContainer key={props.weather.icon}>
           <Image
             src={
               `https://openweathermap.org/img/wn/` +
@@ -31,7 +35,9 @@ const WeatherMain = (props: Props) => {
             alt="weather icon"
           ></Image>
         </ImageContainer>
-        <Temperature>{props.weather.temp}°</Temperature>
+        <Temperature key={props.weather.temp}>
+          {props.weather.temp}°
+        </Temperature>
         <CardsContainer>
           <WeatherInfoCard
             text="Feels Like"

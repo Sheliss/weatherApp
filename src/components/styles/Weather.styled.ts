@@ -1,8 +1,21 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 type Props = {
-  visible: boolean;
+  visible: string;
 };
+
+const inAnimation = keyframes`
+0% {
+    -webkit-transform: translateZ(-1400px);
+            transform: translateZ(-1400px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    opacity: 1;
+  }
+`;
 
 export const WeatherContainer = styled.div`
   width: 100%;
@@ -25,7 +38,7 @@ export const WeatherInfoContainer = styled.div`
 `;
 
 export const WeatherMainContainer = styled.div<Props>`
-  visibility: ${(props) => (props.visible === false ? "visible" : "hidden")};
+  visibility: ${(props) => props.visible};
   text-align: center;
 `;
 
@@ -33,13 +46,22 @@ export const CityName = styled.h1`
   font-size: 50px;
   padding-top: 10px;
   text-transform: capitalize;
+  -webkit-animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `;
 export const Description = styled.p`
   text-transform: capitalize;
+  -webkit-animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `;
 export const ImageContainer = styled.div`
   width: 100px;
   margin: 0 auto;
+  -webkit-animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `;
 export const Image = styled.img`
   width: 100%;
@@ -48,6 +70,9 @@ export const Temperature = styled.p`
   padding-bottom: 15px;
   font-size: 30px;
   font-weight: 700;
+  -webkit-animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 `;
 export const CardsContainer = styled.div`
   display: grid;

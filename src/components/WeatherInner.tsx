@@ -11,7 +11,7 @@ import Spinner from "./Spinner";
 const WeatherInner = () => {
   const api: string = "a24d1a2d1f579fd23347851d7b97f47a";
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather>({
-    city: "none",
+    city: "unknown",
     description: "none",
     icon: "01d",
     temp: 0,
