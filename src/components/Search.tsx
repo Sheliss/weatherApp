@@ -4,18 +4,19 @@ import { useState } from "react";
 
 type Props = {
   getWeather: (city: string) => void;
+  getWeatherByCoords: () => void;
 };
 
 const Search = (props: Props) => {
   const [inputValue, setInputValue] = useState<string>("");
 
-  const handleClick = () => {
+  const handleSearchClick = () => {
     props.getWeather(inputValue);
     setInputValue("");
   };
   return (
     <SearchRow>
-      <SearchButton>
+      <SearchButton onClick={() => props.getWeatherByCoords()}>
         <FaMapMarkerAlt />
       </SearchButton>
       <SearchInput
@@ -23,7 +24,7 @@ const Search = (props: Props) => {
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Enter city name..."
       ></SearchInput>
-      <SearchButton onClick={() => handleClick()}>
+      <SearchButton onClick={() => handleSearchClick()}>
         <FaSearch />
       </SearchButton>
     </SearchRow>

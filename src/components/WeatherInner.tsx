@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CurrentWeather } from "../types";
 import Search from "./Search";
 import {
@@ -9,7 +9,7 @@ import WeatherMain from "./WeatherMain";
 import Spinner from "./Spinner";
 
 const WeatherInner = () => {
-  const api: string = "a24d1a2d1f579fd23347851d7b97f47a";
+  const api: string = "";
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather>({
     city: "unknown",
     description: "none",
@@ -23,45 +23,81 @@ const WeatherInner = () => {
   const [isWeather, setIsWeather] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const getWeather = async (city: string) => {
-    if (city === "") {
-      return;
-    }
+  const getWeather = async (uri: string) => {
+    await fetch(uri)
+      .then((res) => res.json())
+      .then((res) =>
+        setCurrentWeather({
+          city: res.name,
+          description: res.weather[0].description,
+          icon: res.weather[0].icon,
+          temp: Math.round(res.main.temp),
+          feelsLike: Math.round(res.main.feels_like),
+          humidity: Math.round(res.main.humidity),
+          windSpeed: Math.round(res.wind.speed),
+          pressure: res.main.pressure,
+        })
+      )
+      .then(() => setIsLoading(false))
+      .catch(() => setIsLoading(false))
+      .catch((err) => console.error(err));
+  };
 
+  const currentWeatherByCity = (city: string) => {
     setIsLoading(true);
     setIsWeather(true);
 
-    const uri =
+    const uri: string =
       "https://api.openweathermap.org/data/2.5/weather?q=" +
       city +
       "&appid=" +
       api +
       "&units=metric";
 
-    try {
-      const res = await fetch(uri);
-      const data = await res.json();
+    getWeather(uri);
+  };
 
-      setCurrentWeather({
-        city: data.name,
-        description: data.weather[0].description,
-        icon: data.weather[0].icon,
-        temp: Math.round(data.main.temp),
-        feelsLike: Math.round(data.main.feels_like),
-        humidity: Math.round(data.main.humidity),
-        windSpeed: Math.round(data.wind.speed),
-        pressure: data.main.pressure,
-      });
+  const getWeatherByCoords = async () => {
+    setIsLoading(true);
+    setIsWeather(true);
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const uri: string =
+            "https://api.openweathermap.org/data/2.5/weather?lat=" +
+            position.coords.latitude +
+            "&lon=" +
+            position.coords.longitude +
+            "&appid=" +
+            api +
+            "&units=metric";
+
+          getWeather(uri);
+        },
+        (error) => {
+          setIsWeather(false);
+          setIsLoading(false);
+          console.error(error);
+        }
+      );
+    } else {
+      setIsWeather(false);
       setIsLoading(false);
-    } catch (err) {
-      setIsLoading(false);
-      console.error(err);
+      console.error("does not work");
     }
   };
 
+  useEffect(() => {
+    getWeatherByCoords();
+  }, []);
+
   return (
     <WeatherInnerStyled>
-      <Search getWeather={getWeather}></Search>
+      <Search
+        getWeatherByCoords={getWeatherByCoords}
+        getWeather={currentWeatherByCity}
+      ></Search>
       <WeatherInfoContainer>
         {isLoading ? <Spinner /> : ""}
         {isWeather ? (

@@ -45,7 +45,9 @@ export const WeatherMainContainer = styled.div<Props>`
 export const CityName = styled.h1`
   font-size: 50px;
   padding-top: 10px;
-  text-transform: capitalize;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   -webkit-animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     both;
   animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
@@ -58,6 +60,7 @@ export const Description = styled.p`
 `;
 export const ImageContainer = styled.div`
   width: 100px;
+  height: 100px;
   margin: 0 auto;
   -webkit-animation: ${inAnimation} 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
     both;
