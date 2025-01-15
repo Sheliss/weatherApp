@@ -75,7 +75,6 @@ Error generating stack: `+i.message+`
   text-align: center;
 `,nm=he.h1`
   font-size: 50px;
-  padding-top: 10px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -116,6 +115,7 @@ Error generating stack: `+i.message+`
   display: flex;
   background: ${({theme:u})=>u.colors.lightGray};
   padding: 10px;
+  margin-bottom: 20px;
   border-radius: 500px;
   align-items: center;
   position: relative;
@@ -146,12 +146,12 @@ Error generating stack: `+i.message+`
   position: absolute;
   text-align: center;
   width: 300px;
-  bottom: -17px;
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.9rem;
   color: red;
-`,km=u=>{const[a,o]=_t.useState(""),f=()=>{u.getWeather(a),o("")};return K.jsxs(vm,{children:[K.jsx(hf,{onClick:()=>u.getWeatherByCoords(),children:K.jsx(ym,{})}),K.jsx(wm,{onFocus:()=>u.clearError(),value:a,onChange:m=>o(m.target.value),placeholder:"Enter city name...",onKeyDown:m=>m.key==="Enter"?f():""}),K.jsx(hf,{onClick:()=>f(),children:K.jsx(gm,{})}),u.errorMessage==="OK"?"":K.jsx(Sm,{children:u.errorMessage})]})},xm=he.ul`
+`,km=u=>{const[a,o]=_t.useState(""),f=()=>{u.getWeather(a),o("")};return K.jsxs(vm,{children:[K.jsx(hf,{onClick:()=>u.getWeatherByCoords(),children:K.jsx(ym,{})}),K.jsx(wm,{value:a,onChange:m=>o(m.target.value),placeholder:"Enter city name...",onKeyDown:m=>m.key==="Enter"?f():""}),K.jsx(hf,{onClick:()=>f(),children:K.jsx(gm,{})}),u.errorMessage==="OK"?"":K.jsx(Sm,{children:u.errorMessage})]})},xm=he.ul`
   display: flex;
   list-style: none;
 `,Em=he.li`
@@ -234,4 +234,4 @@ Error generating stack: `+i.message+`
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-`,Fm=()=>K.jsx(jm,{children:K.jsx(Mm,{})}),Am=()=>{const u="90a8ff9981f9575ec708fb52c39c8d54",[a,o]=_t.useState("unknown"),[f,m]=_t.useState([{description:"none",icon:"01d",temp:0,feelsLike:0,humidity:0,windSpeed:0,pressure:0,date:"0"}]),[w,E]=_t.useState(!1),[T,_]=_t.useState(!1),[M,I]=_t.useState("OK"),j=async U=>{_(!0),E(!0),await fetch(U).then(H=>H.json()).then(H=>{o(H.city.name),m([]),H.list.map(q=>{const ie={description:q.weather[0].description,icon:q.weather[0].icon,temp:Math.round(q.main.temp),feelsLike:Math.round(q.main.feels_like),humidity:q.main.humidity,windSpeed:q.wind.speed,pressure:q.main.pressure,date:q.dt_txt};m(te=>[...te,ie])})}).then(()=>_(!1)).catch(()=>{_(!1),E(!1),I("Can't find city")})},$=U=>{if(U===""){I("Input is empty");return}_(!0),E(!0);const H="https://api.openweathermap.org/data/2.5/forecast?q="+U+"&appid="+u+"&units=metric";j(H)},Q=async()=>{navigator.geolocation?navigator.geolocation.getCurrentPosition(U=>{_(!0),E(!0),I("OK");const H="https://api.openweathermap.org/data/2.5/forecast?lat="+U.coords.latitude+"&lon="+U.coords.longitude+"&appid="+u+"&units=metric";j(H)},U=>{switch(E(!1),_(!1),U.code){case 1:I("No permission for geolocation");break;case 2:I("Geolocation not available");break;case 3:I("Geolocation timeout");break}}):(E(!1),_(!1),I("Geolocation not supported"))},ee=()=>{I("OK")};return _t.useEffect(()=>{Q()},[]),K.jsxs(bh,{children:[K.jsx(km,{getWeatherByCoords:Q,getWeather:$,errorMessage:M,clearError:ee}),K.jsxs(em,{children:[T?K.jsx(Fm,{}):"",w?K.jsx(Im,{visible:T,cityName:a,weatherListArray:f}):""]})]})},$m=()=>K.jsx(qh,{children:K.jsx(Am,{})}),Um={colors:{lightGray:"#f2f2f2",darkGray:"#48484a",orange:"#EB6E4B"}};function Wm(){return K.jsxs(Kh,{theme:Um,children:[K.jsx(Jh,{}),K.jsx($m,{})]})}Xp.createRoot(document.getElementById("root")).render(K.jsx(Wm,{}));
+`,Fm=()=>K.jsx(jm,{children:K.jsx(Mm,{})}),Am=()=>{const u="90a8ff9981f9575ec708fb52c39c8d54",[a,o]=_t.useState("unknown"),[f,m]=_t.useState([{description:"none",icon:"01d",temp:0,feelsLike:0,humidity:0,windSpeed:0,pressure:0,date:"0"}]),[w,E]=_t.useState(!1),[T,_]=_t.useState(!1),[M,I]=_t.useState("OK"),j=async U=>{_(!0),E(!0),await fetch(U).then(H=>H.json()).then(H=>{o(H.city.name),m([]),H.list.map(q=>{const ie={description:q.weather[0].description,icon:q.weather[0].icon,temp:Math.round(q.main.temp),feelsLike:Math.round(q.main.feels_like),humidity:q.main.humidity,windSpeed:q.wind.speed,pressure:q.main.pressure,date:q.dt_txt};m(te=>[...te,ie]),_(!1),I("OK")})}).catch(()=>{_(!1),E(!1),I("Can't find city")})},$=U=>{if(U===""){I("Input is empty");return}_(!0),E(!0);const H="https://api.openweathermap.org/data/2.5/forecast?q="+U+"&appid="+u+"&units=metric";j(H)},Q=async()=>{navigator.geolocation?navigator.geolocation.getCurrentPosition(U=>{_(!0),E(!0),I("OK");const H="https://api.openweathermap.org/data/2.5/forecast?lat="+U.coords.latitude+"&lon="+U.coords.longitude+"&appid="+u+"&units=metric";j(H)},U=>{switch(E(!1),_(!1),U.code){case 1:I("No permission for geolocation");break;case 2:I("Geolocation not available");break;case 3:I("Geolocation timeout");break}}):(E(!1),_(!1),I("Geolocation not supported"))},ee=()=>{I("OK")};return _t.useEffect(()=>{Q()},[]),K.jsxs(bh,{children:[K.jsx(km,{getWeatherByCoords:Q,getWeather:$,errorMessage:M,clearError:ee}),K.jsxs(em,{children:[T?K.jsx(Fm,{}):"",w?K.jsx(Im,{visible:T,cityName:a,weatherListArray:f}):""]})]})},$m=()=>K.jsx(qh,{children:K.jsx(Am,{})}),Um={colors:{lightGray:"#f2f2f2",darkGray:"#48484a",orange:"#EB6E4B"}};function Wm(){return K.jsxs(Kh,{theme:Um,children:[K.jsx(Jh,{}),K.jsx($m,{})]})}Xp.createRoot(document.getElementById("root")).render(K.jsx(Wm,{}));
