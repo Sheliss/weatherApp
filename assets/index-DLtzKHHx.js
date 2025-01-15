@@ -141,7 +141,7 @@ Error generating stack: `+i.message+`
   outline: 0;
   padding: 5px;
   background-color: transparent;
-`,Sm=u=>{const[a,o]=Ot.useState(""),f=()=>{u.getWeather(a),o("")};return K.jsxs(vm,{children:[K.jsx(hf,{onClick:()=>u.getWeatherByCoords(),children:K.jsx(ym,{})}),K.jsx(wm,{value:a,onChange:m=>o(m.target.value),placeholder:"Enter city name..."}),K.jsx(hf,{onClick:()=>f(),children:K.jsx(gm,{})})]})},km=ye.ul`
+`,Sm=u=>{const[a,o]=Ot.useState(""),f=()=>{u.getWeather(a),o("")};return K.jsxs(vm,{children:[K.jsx(hf,{onClick:()=>u.getWeatherByCoords(),children:K.jsx(ym,{})}),K.jsx(wm,{value:a,onChange:m=>o(m.target.value),placeholder:"Enter city name...",onKeyDown:m=>m.key==="Enter"?f():""}),K.jsx(hf,{onClick:()=>f(),children:K.jsx(gm,{})})]})},km=ye.ul`
   display: flex;
   list-style: none;
 `,xm=ye.li`
