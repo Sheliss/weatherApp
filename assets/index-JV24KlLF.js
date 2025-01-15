@@ -115,7 +115,7 @@ Error generating stack: `+i.message+`
   display: flex;
   background: ${({theme:u})=>u.colors.lightGray};
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   border-radius: 500px;
   align-items: center;
   position: relative;
@@ -146,7 +146,7 @@ Error generating stack: `+i.message+`
   position: absolute;
   text-align: center;
   width: 300px;
-  bottom: -20px;
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 0.9rem;
