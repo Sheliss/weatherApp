@@ -44,7 +44,6 @@ export const WeatherMainContainer = styled.div<Props>`
 
 export const CityName = styled.h1`
   font-size: 50px;
-  padding-top: 10px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -83,4 +82,9 @@ export const CardsContainer = styled.div`
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 10px;
   grid-row-gap: 10px;
+`;
+
+export const FutureCardsContainer = styled.div`
+  padding-top: 10px;
+  overflow-x: scroll;
 `;

@@ -1,5 +1,4 @@
-export interface CurrentWeather {
-  city: string;
+export interface WeatherList {
   description: string;
   icon: string;
   temp: number;
@@ -7,4 +6,5 @@ export interface CurrentWeather {
   humidity: number;
   windSpeed: number;
   pressure: number;
+  date: string;
 }
